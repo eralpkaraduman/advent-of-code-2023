@@ -7,5 +7,5 @@ import (
 
 func main() {
 	fmt.Println("advent of code 2023")
-	fmt.Println("01:", day01.Solution())
+	fmt.Println("Day 01:", day01.Solution())
 }
