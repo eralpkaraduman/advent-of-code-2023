@@ -1,0 +1,2 @@
+- Install gvm
+- `gvm use $(cat .go-version)`
