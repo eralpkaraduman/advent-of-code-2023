@@ -1,7 +1,6 @@
 package day01
 
 import (
-	"fmt"
 	"strings"
 	"unicode"
 )
@@ -41,10 +40,7 @@ func SolutionB(input []string) int {
 		}
 
 		num := ( first * 10 ) + last 
-		
-		fmt.Println(line, "->", num, first, last)
 		sum += num
-		
 	}
 	return sum
 }
