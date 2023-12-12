@@ -1,7 +1,7 @@
 package main
 
 import (
-	day01 "advent_of_code/01"
+	"advent_of_code/day01"
 	"fmt"
 )
 
