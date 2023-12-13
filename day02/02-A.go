@@ -41,55 +41,56 @@ var maxColors = ColorSet{
 
 func SolutionA(input []string) int {
 	// input = test
-
+	
 	sumPossibleIds := 0
-
+	
 	for _, line := range input {
 		game := parseGame(line)
 		possible := true
 		for _, set := range game.Sets {
 			if set.Red > maxColors.Red || set.Green > maxColors.Green || set.Blue > maxColors.Blue {
 				possible = false
-			} 		
-		}		
-
-		if possible {
-			sumPossibleIds += game.ID 
+				} 		
+				}		
+				
+				if possible {
+					sumPossibleIds += game.ID 
+				}
+			}
+			
+			return sumPossibleIds
 		}
-	}
-
-	return sumPossibleIds
-}
-
-func parseGame(line string) Game {
-	game := Game{}
-	line = strings.Replace(line, "Game", "", 1)
-	parts := strings.Split(line, ":")
-	gameIdInt, _ := strconv.Atoi(strings.TrimSpace(parts[0])) 
-	game.ID = gameIdInt
-	setsStrings := strings.Split(strings.TrimSpace(parts[1]), ";")
-	for _, setString := range setsStrings {
-		setString = strings.TrimSpace(setString)
-		game.Sets = append(game.Sets, parseSet(setString))
-	}
-	return game
-}
-
-func parseSet(setString string) ColorSet {
-	set := NewColorSet()
-	for _, colorString := range strings.Split(setString, ",") {
-		pairs := strings.Split(strings.TrimSpace(colorString), " ")
-		countString := strings.TrimSpace(pairs[0])
-		color := strings.TrimSpace(pairs[1])
-		if (color == "red") {
-			set.Red, _ = strconv.Atoi(countString)
+		
+		func parseGame(line string) Game {
+			game := Game{}
+			line = strings.Replace(line, "Game", "", 1)
+			parts := strings.Split(line, ":")
+			gameIdInt, _ := strconv.Atoi(strings.TrimSpace(parts[0])) 
+			game.ID = gameIdInt
+			setsStrings := strings.Split(strings.TrimSpace(parts[1]), ";")
+			for _, setString := range setsStrings {
+				setString = strings.TrimSpace(setString)
+				game.Sets = append(game.Sets, parseSet(setString))
+			}
+			return game
 		}
-		if (color == "blue") {
-			set.Blue, _ = strconv.Atoi(countString)
+		
+		func parseSet(setString string) ColorSet {
+			set := NewColorSet()
+			for _, colorString := range strings.Split(setString, ",") {
+				pairs := strings.Split(strings.TrimSpace(colorString), " ")
+				countString := strings.TrimSpace(pairs[0])
+				color := strings.TrimSpace(pairs[1])
+				if (color == "red") {
+					set.Red, _ = strconv.Atoi(countString)
+				}
+				if (color == "blue") {
+					set.Blue, _ = strconv.Atoi(countString)
+				}
+				if (color == "green") {
+					set.Green, _ = strconv.Atoi(countString)
+				}
+			}
+			return set
 		}
-		if (color == "green") {
-			set.Green, _ = strconv.Atoi(countString)
-		}
-	}
-	return set
-}
+		
